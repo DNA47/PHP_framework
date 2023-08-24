@@ -1,0 +1,1 @@
+INSERT INTO `comments` (`id`, `author_id`, `article_id`, `text`, `published`) VALUES (NULL, '127340', '100500', 'Текст комментария тестовый', CURRENT_TIMESTAMP);
