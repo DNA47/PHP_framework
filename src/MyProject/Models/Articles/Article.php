@@ -1,44 +1,54 @@
 <?php
 
+
+
 namespace MyProject\Models\Articles;
+
 
 
 use MyProject\Models\Users\User;
 
 
+
 class Article
 {
 
-    private $title;
+    private $id;
+
+    private $name;
 
     private $text;
 
-    private $author;
+    private $authorId;
+
+    private $createdAt;
 
 
 
-    public function __construct(string $title, string $text, User $author)
+    public function __set($name, $value)
     {
 
-        $this->title = $title;
-        //this.title = $title;
+        $camelCaseName = $this->underscoreToCamelCase($name);
 
-        $this->text = $text;
+        $this->$camelCaseName = $value;
 
-        $this->author = $author;
+    }
+
+    public function getId(): int
+    {
+
+        return $this->id;
 
     }
 
 
 
-    public function getTitle(): string
+    public function getName(): string
     {
 
-        return $this->title;
+        return $this->name;
 
     }
-
-
 
     public function getText(): string
     {
@@ -48,11 +58,10 @@ class Article
     }
 
 
-
-    public function getAuthor(): User
+    private function underscoreToCamelCase(string $source): string
     {
 
-        return $this->author;
+        return lcfirst(str_replace('_', '', ucwords($source, '_')));
 
     }
 

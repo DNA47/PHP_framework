@@ -24,6 +24,9 @@ class View
 
     {
 
+        // echo('<br>');
+        // var_dump($vars);
+
         http_response_code($code);
 
         extract($vars);
