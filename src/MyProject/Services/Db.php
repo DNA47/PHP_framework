@@ -6,24 +6,51 @@ namespace MyProject\Services;
 class Db
 {
 
+    private static $instance;
+    private static $instancesCount;
+
     /** @var \PDO */
 
     private $pdo;
 
 
-
-    public function __construct()
+    public static function getInstance(): self
     {
+
+        if (self::$instance === null) {
+
+            self::$instance = new self();
+
+        }
+
+
+
+        return self::$instance;
+
+    }
+
+    private function __construct()
+    {
+
+        self::$instancesCount++;
+
+
+
         $dbOptions = (require __DIR__ . '/../../settings.php');
-        // var_dump($dbOptions);
+
+
         $this->pdo = new \PDO(
+
             'mysql:host=' . $dbOptions['host'] . ';dbname=' . $dbOptions['dbname'],
-            // 'mysql:host=' . $dbOptions['host'] .';port=' . $dbOptions['port']  . ';dbname=' . $dbOptions['dbname'],
+
             $dbOptions['user'],
+
             $dbOptions['password']
+
         );
 
         $this->pdo->exec('SET NAMES UTF8');
+
     }
 
 

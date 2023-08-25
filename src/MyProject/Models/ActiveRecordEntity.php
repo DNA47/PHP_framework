@@ -13,9 +13,17 @@ use MyProject\Services\Db;
 abstract class ActiveRecordEntity
 {
 
-
+    /** @var int */
 
     protected $id;
+
+
+
+    /**
+
+     * @return int
+
+     */
 
     public function getId(): int
     {
@@ -44,19 +52,37 @@ abstract class ActiveRecordEntity
 
     }
 
+
+
+    /**
+
+     * @return static[]
+
+     */
+
     public static function findAll(): array
     {
 
-        $db = new Db();
+        $db = Db::getInstance();
 
         return $db->query('SELECT * FROM `' . static::getTableName() . '`;', [], static::class);
 
     }
 
+
+
+    /**
+
+     * @param int $id
+
+     * @return static|null
+
+     */
+
     public static function getById(int $id): ?self
     {
-
-        $db = new Db();
+        
+        $db = Db::getInstance();
 
         $entities = $db->query(
 
