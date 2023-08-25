@@ -8,8 +8,6 @@ namespace MyProject\Controllers;
 
 use MyProject\Models\Articles\Article;
 
-use MyProject\Services\Db;
-
 use MyProject\View\View;
 
 
@@ -21,16 +19,10 @@ class MainController
 
 
 
-    private $db;
-
-
-
     public function __construct()
     {
 
         $this->view = new View(__DIR__ . '/../../../templates');
-
-        $this->db = new Db();
 
     }
 
@@ -39,7 +31,7 @@ class MainController
     public function main()
     {
 
-        $articles = $this->db->query('SELECT * FROM `articles`;', [], Article::class);
+        $articles = Article::findAll();
 
         $this->view->renderHtml('main/main.php', ['articles' => $articles]);
 
