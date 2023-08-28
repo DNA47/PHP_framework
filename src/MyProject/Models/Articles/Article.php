@@ -44,6 +44,13 @@ class Article extends ActiveRecordEntity
 
     }
 
+    public function setName(string $value): void
+    {
+
+        $this->name = $value;
+
+    }
+
 
 
 
@@ -52,6 +59,13 @@ class Article extends ActiveRecordEntity
     {
 
         return $this->text;
+
+    }
+
+    public function setText(string $value): void
+    {
+
+        $this->text = $value;
 
     }
 
