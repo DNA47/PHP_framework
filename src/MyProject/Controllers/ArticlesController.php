@@ -35,19 +35,21 @@ class ArticlesController
 
         $article = Article::getById($articleId);
 
+        $reflector = new \ReflectionObject($article);
 
+        $properties = $reflector->getProperties();
 
-        if ($article === null) {
+        $propertiesNames = [];
 
-            $this->view->renderHtml('errors/404.php', [], 404);
+        foreach ($properties as $property) {
 
-            return;
+            $propertiesNames[] = $property->getName();
 
         }
 
+        var_dump($propertiesNames);
 
-
-        $this->view->renderHtml('articles/view.php', ['article' => $article]);
+        return;
 
     }
 
