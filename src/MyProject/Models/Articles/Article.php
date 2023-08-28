@@ -76,6 +76,19 @@ class Article extends ActiveRecordEntity
 
     }
 
+    /**
+
+ * @param User $author
+
+ */
+
+    public function setAuthor(User $author): void
+    {
+
+        $this->authorId = $author->getId();
+
+    }
+
 
 
     protected static function getTableName(): string
