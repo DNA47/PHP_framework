@@ -1,65 +1,63 @@
 .layout {
+  width: 100%;
 
-    width: 100%;
+  max-width: 1024px;
 
-    max-width: 1024px;
+  margin: auto;
 
-    margin: auto;
+  background-color: white;
 
-    background-color: white;
-
-    border-collapse: collapse;
-
+  border-collapse: collapse;
 }
-
-
 
 .layout tr td {
+  padding: 20px;
 
-    padding: 20px;
+  vertical-align: top;
 
-    vertical-align: top;
-
-    border: solid 1px gray;
-
+  border: solid 1px gray;
 }
-
-
 
 .header {
-
-    font-size: 30px;
-
+  font-size: 30px;
 }
-
-
 
 .footer {
-
-    text-align: center;
-
+  text-align: center;
 }
-
-
 
 .sidebarHeader {
-
-    font-size: 20px;
-
+  font-size: 20px;
 }
-
-
 
 .sidebar ul {
+  padding-left: 20px;
+}
 
-    padding-left: 20px;
-
+a,
+a:visited {
+  color: darkgreen;
 }
 
 
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    border: 0;
+    padding: 0;
+    white-space: nowrap;
+    clip-path: inset(100%);
+    clip: rect(0 0 0 0);
+    overflow: hidden;
+  }
 
-a, a:visited {
-
-    color: darkgreen;
-
+.editPost {}
+.editPost input, .editPost textarea{
+    font-size: 20px;
+    padding: 3px;
+    width: 400px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
 }
