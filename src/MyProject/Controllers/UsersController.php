@@ -5,10 +5,9 @@
 namespace MyProject\Controllers;
 
 
-
 use MyProject\View\View;
-
-
+use MyProject\Models\Users\User;
+use MyProject\Exceptions\InvalidArgumentException;
 
 class UsersController
 {
@@ -31,7 +30,27 @@ class UsersController
     public function signUp()
     {
 
-        echo 'здесь будет код для регистрации пользователей';
+        if (!empty($_POST)) {
+
+            try {
+
+                
+                // $user = User::signUp($_POST);
+                User::signUp($_POST);
+
+            } catch (InvalidArgumentException $e) {
+
+                $this->view->renderHtml('users/signUp.php', ['error' => $e->getMessage()]);
+
+                return;
+
+            }
+
+        }
+
+
+
+        $this->view->renderHtml('users/signUp.php');
 
     }
 
