@@ -10,6 +10,8 @@ return [
 
     '~^articles/add$~' => [\MyProject\Controllers\ArticlesController::class, 'add'],
 
+    '~^users/register$~' => [\MyProject\Controllers\UsersController::class, 'signUp'],
+
     '~^$~' => [\MyProject\Controllers\MainController::class, 'main'],
 
 ];
