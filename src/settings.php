@@ -10,7 +10,7 @@ return [
                 // 'host' => 'std-2128.std-mysql.ist.mospolytech.ru',
                 // 'host' => 'std-mysql.ist.mospolytech.ru',
 
-                'dbname' => 'std_2128_comments-off',
+                'dbname' => 'std_2128_comments',
 
                 // 'user' => 'std_2128_comments',
                 'user' => 'root',
