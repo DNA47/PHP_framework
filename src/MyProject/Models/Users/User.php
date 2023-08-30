@@ -66,7 +66,7 @@ class User extends ActiveRecordEntity
 
     }
 
-    public static function signUp(array $userData): void
+    public static function signUp(array $userData): User
     {
 
         if (empty($userData['nickname'])) {
@@ -114,6 +114,41 @@ class User extends ActiveRecordEntity
             throw new InvalidArgumentException('Пароль должен быть не менее 8 символов');
 
         }
+
+
+        if (static::findOneByColumn('nickname', $userData['nickname']) !== null) {
+
+            throw new InvalidArgumentException('Пользователь с таким nickname уже существует');
+
+        }
+
+
+
+        if (static::findOneByColumn('email', $userData['email']) !== null) {
+
+            throw new InvalidArgumentException('Пользователь с таким email уже существует');
+
+        }
+
+        $user = new User();
+
+        $user->nickname = $userData['nickname'];
+    
+        $user->email = $userData['email'];
+    
+        $user->passwordHash = password_hash($userData['password'], PASSWORD_DEFAULT);
+    
+        $user->isConfirmed = false;
+    
+        $user->role = 'user';
+    
+        $user->authToken = sha1(random_bytes(100)) . sha1(random_bytes(100));
+    
+        $user->save();
+    
+     
+    
+        return $user;
 
     }
 }

@@ -34,13 +34,21 @@ class UsersController
 
             try {
 
-                
-                // $user = User::signUp($_POST);
-                User::signUp($_POST);
+                $user = User::signUp($_POST);
 
             } catch (InvalidArgumentException $e) {
 
                 $this->view->renderHtml('users/signUp.php', ['error' => $e->getMessage()]);
+
+                return;
+
+            }
+
+
+
+            if ($user instanceof User) {
+
+                $this->view->renderHtml('users/signUpSuccessful.php');
 
                 return;
 
