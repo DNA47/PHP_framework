@@ -2,6 +2,8 @@
 namespace MyProject\Services;
 
 
+use MyProject\Exceptions\DbException;
+
 
 class Db
 {
@@ -32,24 +34,27 @@ class Db
     private function __construct()
     {
 
-        self::$instancesCount++;
+        $dbOptions = (require __DIR__ . '/../../settings.php')['db'];
 
+        try {
 
+            $this->pdo = new \PDO(
 
-        $dbOptions = (require __DIR__ . '/../../settings.php');
+                'mysql:host=' . $dbOptions['host'] . ';dbname=' . $dbOptions['dbname'],
 
+                $dbOptions['user'],
 
-        $this->pdo = new \PDO(
+                $dbOptions['password']
 
-            'mysql:host=' . $dbOptions['host'] . ';dbname=' . $dbOptions['dbname'],
+            );
 
-            $dbOptions['user'],
+            $this->pdo->exec('SET NAMES UTF8');
 
-            $dbOptions['password']
+        } catch (\PDOException $e) {
 
-        );
+            throw new DbException('Ошибка при подключении к базе данных: ' . $e->getMessage());
 
-        $this->pdo->exec('SET NAMES UTF8');
+        }
 
     }
 

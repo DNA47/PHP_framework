@@ -2,19 +2,21 @@
 
 return [
 
-        // 'host' => 'std-mysql',
-        'host' => 'localhost',
-        // 'host' => 'std-mysql.std-2128.ist.mospolytech.ru',
-        // 'port' => '3306',
-        // 'host' => 'std-2128.std-mysql.ist.mospolytech.ru',
-        // 'host' => 'std-mysql.ist.mospolytech.ru',
+        'db' => [
+                // 'host' => 'std-mysql',
+                'host' => 'localhost',
+                // 'host' => 'std-mysql.std-2128.ist.mospolytech.ru',
+                // 'port' => '3306',
+                // 'host' => 'std-2128.std-mysql.ist.mospolytech.ru',
+                // 'host' => 'std-mysql.ist.mospolytech.ru',
 
-        'dbname' => 'std_2128_comments',
+                'dbname' => 'std_2128_comments-off',
 
-        // 'user' => 'std_2128_comments',
-        'user' => 'root',
+                // 'user' => 'std_2128_comments',
+                'user' => 'root',
 
-        'password' => ''
-        // 'password' => '12345678'
+                'password' => ''
+                // 'password' => '12345678'
+        ]
 
 ];
