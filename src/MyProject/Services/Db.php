@@ -67,6 +67,7 @@ class Db
 
         $result = $sth->execute($params);
 
+        $lastId = $this->pdo->lastInsertId();
 
 
         if (false === $result) {
@@ -76,8 +77,28 @@ class Db
         }
 
 
-
         return $sth->fetchAll(\PDO::FETCH_CLASS, $className);
+
+    }
+    
+    public function queryId(string $sql, array $params = [], string $className = 'stdClass'): ?int
+    {
+
+        $sth = $this->pdo->prepare($sql);
+
+        $result = $sth->execute($params);
+
+        $lastId = $this->pdo->lastInsertId();
+
+
+        if (false === $result) {
+
+            return null;
+
+        }
+
+
+        return $lastId;
 
     }
 

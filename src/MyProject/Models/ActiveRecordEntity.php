@@ -87,7 +87,7 @@ abstract class ActiveRecordEntity
 
     }
 
-    public function save(): void
+    public function save(): int
     {
 
         $mappedProperties = $this->mapPropertiesToDbFormat();
@@ -95,12 +95,11 @@ abstract class ActiveRecordEntity
         if ($this->id !== null) {
 
             $this->update($mappedProperties);
+            return 1;
 
         } else {
 
-            $this->insert($mappedProperties);
-            // Как получить новый ID после insert?
-
+            return $this->insert($mappedProperties);
         }
 
     }
@@ -138,7 +137,7 @@ abstract class ActiveRecordEntity
 
 
 
-    private function insert(array $mappedProperties): void
+    private function insert(array $mappedProperties): int
     {
 
         $filteredProperties = array_filter($mappedProperties);
@@ -174,12 +173,13 @@ abstract class ActiveRecordEntity
         $sql = 'INSERT INTO ' . static::getTableName() . ' (' . $columnsViaSemicolon . ') VALUES (' . $paramsNamesViaSemicolon . ');';
 
 
-        // var_dump($sql);
+       
 
         $db = Db::getInstance();
 
-        $db->query($sql, $params2values, static::class);
+        $result = $db->queryId($sql, $params2values, static::class);
 
+        return $result;
     }
 
 

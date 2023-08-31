@@ -56,6 +56,13 @@ class User extends ActiveRecordEntity
         return $this->nickname;
 
     }
+    
+    public function getEmail(): string
+    {
+
+        return $this->email;
+
+    }
 
 
 
@@ -144,9 +151,9 @@ class User extends ActiveRecordEntity
     
         $user->authToken = sha1(random_bytes(100)) . sha1(random_bytes(100));
     
-        $user->save();
+        $user->id = $user->save();
     
-     
+        // var_dump($user);
     
         return $user;
 

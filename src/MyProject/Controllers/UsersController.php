@@ -52,8 +52,6 @@ class UsersController
 
                 $code = UserActivationService::createActivationCode($user);
 
-                var_dump($user);
-
                 EmailSender::send($user, 'Активация', 'userActivation.php', [
 
                     'userId' => $user->getId(),
