@@ -99,6 +99,7 @@ abstract class ActiveRecordEntity
         } else {
 
             $this->insert($mappedProperties);
+            // Как получить новый ID после insert?
 
         }
 
@@ -173,7 +174,7 @@ abstract class ActiveRecordEntity
         $sql = 'INSERT INTO ' . static::getTableName() . ' (' . $columnsViaSemicolon . ') VALUES (' . $paramsNamesViaSemicolon . ');';
 
 
-        var_dump($sql);
+        // var_dump($sql);
 
         $db = Db::getInstance();
 
