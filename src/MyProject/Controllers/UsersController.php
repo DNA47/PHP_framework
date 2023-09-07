@@ -87,22 +87,41 @@ class UsersController
 
             $user->activate();
 
-            if(true) {
+            if (true) {
                 UserActivationService::deleteActivationCode($user);
                 echo 'User activated. We can delete code from DB';
-            } 
-            else 
-            {
+            } else {
                 echo 'Something going wrong';
             }
 
             // echo 'OK!';
 
-        } 
-        else 
-        {
+        } else {
             echo 'Your activation code is not valid. Возможно вы уже активировали вашу учетную запись.';
         }
+
+    }
+
+    public function login()
+    {
+
+        if (!empty($_POST)) {
+
+            try {
+
+                $user = User::login($_POST);
+
+            } catch (InvalidArgumentException $e) {
+
+                $this->view->renderHtml('users/login.php', ['error' => $e->getMessage()]);
+
+                return;
+
+            }
+
+        }
+
+        $this->view->renderHtml('users/login.php');
 
     }
 }
