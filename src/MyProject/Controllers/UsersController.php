@@ -87,8 +87,21 @@ class UsersController
 
             $user->activate();
 
-            echo 'OK!';
+            if(true) {
+                UserActivationService::deleteActivationCode($user);
+                echo 'User activated. We can delete code from DB';
+            } 
+            else 
+            {
+                echo 'Something going wrong';
+            }
 
+            // echo 'OK!';
+
+        } 
+        else 
+        {
+            echo 'Your activation code is not valid. Возможно вы уже активировали вашу учетную запись.';
         }
 
     }
