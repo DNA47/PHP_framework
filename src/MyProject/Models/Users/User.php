@@ -56,7 +56,7 @@ class User extends ActiveRecordEntity
         return $this->nickname;
 
     }
-    
+
     public function getEmail(): string
     {
 
@@ -140,22 +140,31 @@ class User extends ActiveRecordEntity
         $user = new User();
 
         $user->nickname = $userData['nickname'];
-    
+
         $user->email = $userData['email'];
-    
+
         $user->passwordHash = password_hash($userData['password'], PASSWORD_DEFAULT);
-    
-        $user->isConfirmed = false;
-    
+
+        $user->isConfirmed = 0;
+
         $user->role = 'user';
-    
+
         $user->authToken = sha1(random_bytes(100)) . sha1(random_bytes(100));
-    
+
         $user->id = $user->save();
-    
+
         // var_dump($user);
-    
+
         return $user;
+
+    }
+
+    public function activate(): void
+    {
+
+        $this->isConfirmed = 1;
+
+        $this->save();
 
     }
 }
