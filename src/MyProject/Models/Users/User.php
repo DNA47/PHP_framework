@@ -63,6 +63,12 @@ class User extends ActiveRecordEntity
         return $this->email;
 
     }
+    public function getAuthToken(): string
+    {
+
+        return $this->authToken;
+
+    }
 
 
 
@@ -229,7 +235,6 @@ class User extends ActiveRecordEntity
         return $this->passwordHash;
 
     }
-
 
 
     private function refreshAuthToken()
