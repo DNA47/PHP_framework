@@ -118,4 +118,32 @@ class UsersController extends AbstractController
         $this->view->renderHtml('users/login.php');
 
     }
+    
+    public function logout()
+    {
+
+        // if (!empty($_POST)) {
+
+            try {
+
+                // $user = User::logout($_POST);
+
+                 // Удалить кукис из браузра
+                UsersAuthService::deleteToken();
+
+                header('Location: /');
+
+                exit();
+
+            } catch (InvalidArgumentException $e) {
+
+                $this->view->renderHtml('users/logout.php', ['error' => $e->getMessage()]);
+
+                return;
+
+            }
+
+        // }
+
+    }
 }

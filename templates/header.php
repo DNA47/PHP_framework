@@ -31,8 +31,20 @@
         <tr>
 
             <td colspan="2" style="text-align: right">
+               
+                    <?php if (!empty($user)): ?>
+                        <p> Привет,  <?=  $user->getNickname() ?> </p>
 
-                <?= !empty($user) ? 'Привет, ' . $user->getNickname() : 'Войдите на сайт' ?>
+                        <form  action="/users/logout" method="post">
+                            <input type="submit" value="Log OUT">
+                        </form>
+
+                    <?php else: ?>
+                        <p>Войдите на сайт</p>
+                    <?php endif; ?>
+                
+
+                <!-- <?= !empty($user) ? 'Привет, ' . $user->getNickname() : 'Войдите на сайт' ?> -->
 
             </td>
 

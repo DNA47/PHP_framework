@@ -228,6 +228,23 @@ class User extends ActiveRecordEntity
         return $user;
 
     }
+    
+    public static function logout(): void
+    {
+
+
+        // Удалить кукис из базы
+
+        // $user->refreshAuthToken();
+        // $this->refreshAuthToken();
+
+        // $user->save();
+        // $this->save();
+
+
+
+
+    }
 
     public function getPasswordHash(): string
     {
