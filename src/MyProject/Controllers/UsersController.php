@@ -4,29 +4,14 @@
 
 namespace MyProject\Controllers;
 
-
-use MyProject\View\View;
 use MyProject\Models\Users\User;
 use MyProject\Models\Users\UserActivationService;
 use MyProject\Models\Users\UsersAuthService;
 use MyProject\Services\EmailSender;
 use MyProject\Exceptions\InvalidArgumentException;
 
-class UsersController
+class UsersController extends AbstractController
 {
-
-    /** @var View */
-
-    private $view;
-
-
-
-    public function __construct()
-    {
-
-        $this->view = new View(__DIR__ . '/../../../templates');
-
-    }
 
 
 
