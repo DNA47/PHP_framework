@@ -121,4 +121,16 @@ class ArticlesController extends AbstractController
         var_dump($article);
 
     }
+
+    public function comments(): void 
+    {
+        // $this->view->renderHtml('articles/comment.php');
+        echo('We will take your comment');
+    }
+   
+    public function updateComments(): void 
+    {
+        // TODO: взять шаблон редактирования статьи и использовать в качестве заготовки для редактирования комментария
+        echo('We will UPDATE comment');
+    }
 }

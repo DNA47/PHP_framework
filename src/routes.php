@@ -10,6 +10,10 @@ return [
 
     '~^articles/add$~' => [\MyProject\Controllers\ArticlesController::class, 'add'],
 
+    '~^articles/(\d+)/comments$~' => [\MyProject\Controllers\ArticlesController::class, 'comments'],
+
+    '~^articles/(\d+)/comments/(\d+)/edit$~' => [\MyProject\Controllers\ArticlesController::class, 'updateComments'],
+
     '~^users/register$~' => [\MyProject\Controllers\UsersController::class, 'signUp'],
 
     '~^users/(\d+)/activate/(.+)$~' => [\MyProject\Controllers\UsersController::class, 'activate'],
