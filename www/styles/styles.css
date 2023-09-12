@@ -43,6 +43,17 @@ a:visited {
   color: darkgreen;
 }
 
+a.btn {
+  font-family: Arial, Helvetica, sans-serif;
+  padding: 7px 22px;
+  border-radius: 5px;
+  color: white;
+  text-decoration: none;
+  background-color: darkgreen;
+}
+a.btn:hover {
+  background-color: green;
+}
 
 .visually-hidden {
     position: absolute;

@@ -35,12 +35,16 @@
                     <?php if (!empty($user)): ?>
                         <p> Привет,  <?=  $user->getNickname() ?> </p>
 
-                        <form  action="/users/logout" method="post">
+                        <!-- <form  action="/users/logout" method="post">
                             <input type="submit" value="Log OUT">
-                        </form>
+                        </form> -->
+
+                        <a href="/users/logout" class="btn">Выйти</a>
 
                     <?php else: ?>
-                        <p>Войдите на сайт</p>
+                        <a href="/users/login" class="btn">Войдите на сайт</a>
+                        или
+                        <a href="/users/register" class="btn">Зарегистрируйтесь</a>
                     <?php endif; ?>
                 
 
