@@ -1,4 +1,4 @@
-<?php
+<?php 
 
 namespace MyProject\View;
 
@@ -9,7 +9,11 @@ class View
 
     private $templatesPath;
 
+ 
 
+    private $extraVars = [];
+
+ 
 
     public function __construct(string $templatesPath)
     {
@@ -19,15 +23,25 @@ class View
     }
 
 
+    public function setVar(string $name, $value): void
+
+    {
+
+        $this->extraVars[$name] = $value;
+
+    }
+
+ 
 
     public function renderHtml(string $templateName, array $vars = [], int $code = 200)
 
     {
 
-        // echo('<br>');
-        // var_dump($vars);
-
         http_response_code($code);
+
+ 
+
+        extract($this->extraVars);
 
         extract($vars);
 
@@ -46,7 +60,5 @@ class View
         echo $buffer;
 
     }
-
-    
 
 }
