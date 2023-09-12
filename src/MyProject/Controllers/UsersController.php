@@ -126,9 +126,8 @@ class UsersController extends AbstractController
 
             try {
 
-                // $user = User::logout($_POST);
+                User::logout($this->user);
 
-                 // Удалить кукис из браузра
                 UsersAuthService::deleteToken();
 
                 header('Location: /');
