@@ -7,6 +7,7 @@ use MyProject\Exceptions\NotFoundException;
 use MyProject\Models\Comments\Comment;
 use MyProject\Models\Articles\Article;
 use MyProject\Models\Users\User;
+use MyProject\Models\Users\UsersAuthService;
 
 
 class ArticlesController extends AbstractController
@@ -124,18 +125,46 @@ class ArticlesController extends AbstractController
 
 
 
-        var_dump($article);
 
     }
 
     // Принимаем пост-запросы для добавления комментария в БД
-    public function comments(): void 
+    public function comments(int $articleId): void 
     {
-        // $this->view->renderHtml('articles/comment.php');
-        // TODO: принимать пост-запрос, вытаскивать из него данные и отправлять запрос в базу (на сохранение комментария)
+        $author = UsersAuthService::getUserByToken();
+        $article = Article::getById($articleId);
+    
 
-        
-        echo('We will take your comment');
+        if (empty($_POST['text'])) {
+            echo ("Ошибка! Вы забыли добавить текст!");
+            return;
+        }
+
+        if (!$author){
+            echo ("Ошибка! Я не могу понять, кто автор комментария");
+            return;
+        }
+
+        if (!$article) {
+            echo ("Ошибка! Я не могу понять, в какую статью добавить этот комментарий");
+            return;
+        }
+
+
+
+        $comment = new Comment();
+
+        $comment->setAuthor($author);
+
+        $comment->setArticle($article);
+
+        $comment->setText($_POST['text']);
+
+        $comment->save();
+
+
+
+        echo('We will take your comment. Soon you will be redirected.');
     }
    
     // Принимаем гет-запросы для вывода формы редактирования комментария

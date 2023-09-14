@@ -4,20 +4,21 @@ namespace MyProject\Models\Comments;
 
 use MyProject\Models\ActiveRecordEntity;
 use MyProject\Services\Db;
+use MyProject\Models\Users\User;
+use MyProject\Models\Articles\Article;
 
-// TODO: не готово, доделать
 class Comment extends ActiveRecordEntity
 {
 
 
 
-    protected $author_id;
+    protected $authorId;
 
 
 
 
 
-    protected $article_id;
+    protected $articleId;
 
 
 
@@ -34,10 +35,37 @@ class Comment extends ActiveRecordEntity
         return $this->text;
 
     }
-    public function getAuthor(): string
+    public function setText(string $value): void
     {
 
-        return $this->author_id;
+        $this->text = $value;
+
+    }
+
+    public function getAuthor(): User
+    {
+
+        return User::getById($this->authorId);
+
+    }
+
+    public function setAuthor(User $author): void
+    {
+
+        $this->authorId = $author->getId();
+
+    }
+    public function getArticle(): Article
+    {
+
+        return Article::getById($this->articleId);
+
+    }
+
+    public function setArticle(Article $article): void
+    {
+
+        $this->articleId = $article->getId();
 
     }
 
