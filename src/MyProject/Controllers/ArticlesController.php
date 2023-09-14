@@ -27,6 +27,10 @@ class ArticlesController extends AbstractController
 
         $allComments = Comment::findAllByColumn("article_id", $article->getId()); 
 
+        if($allComments === null) {
+            $allComments = [];
+        }
+
 
         $this->view->renderHtml('articles/view.php', [
 
