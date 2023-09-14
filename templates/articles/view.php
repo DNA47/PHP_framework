@@ -4,7 +4,24 @@
 
     <p><?= $article->getText() ?></p>
 
-    <p>Автор: <?= $article->getAuthor()->getNickname() ?></p>
+    <p>Автор: <?= $article->getAuthor()->getNickname() ?></p>   
+   
+    <hr>
+
+    <?php 
+
+        $view = new \MyProject\View\View(__DIR__ . '../../comments');
+
+        $view->renderHtml('addCommentForm.php', [ 
+            'id' => $article->getId(),
+            'author' => $article->getAuthor(),
+            'user' => $user,
+            
+        ]);
+    
+    ?>
+    
+    <hr>
 
     <?php foreach ($comments as $comment): ?>
 
