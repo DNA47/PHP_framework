@@ -4,6 +4,7 @@ namespace MyProject\Controllers;
 
 use MyProject\Exceptions\NotFoundException;
 
+use MyProject\Models\Comments\Comment;
 use MyProject\Models\Articles\Article;
 use MyProject\Models\Users\User;
 
@@ -22,14 +23,15 @@ class ArticlesController extends AbstractController
 
             throw new NotFoundException();
 
-
         }
 
+        $allComments = Comment::findAllByColumn("article_id", $article->getId()); 
 
 
         $this->view->renderHtml('articles/view.php', [
 
-            'article' => $article
+            'article' => $article,
+            'comments' => $allComments,
 
         ]);
 
