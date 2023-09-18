@@ -169,11 +169,46 @@ class ArticlesController extends AbstractController
    
     // Принимаем гет-запросы для вывода формы редактирования комментария
     // Принимаем пост-запросы для редактирования комментария в БД
-    public function updateComments(): void 
+    public function updateComments(int $articleId, int $commentId): void 
     {
-        // TODO: взять шаблон редактирования статьи и использовать в качестве заготовки для редактирования комментария
-        echo('We will UPDATE comment');
+       
+        if($_SERVER['REQUEST_METHOD'] === 'POST') {
+            echo('We will UPDATE comment');
 
-        // TODO: сделать схоранение отредактированного комментария если отрпвлен пост запрос, а не гет
+        } else {
+
+            $author = UsersAuthService::getUserByToken();
+            $article = Article::getById($articleId);
+            $comment = Comment::getById($commentId);
+        
+    
+            // if (empty($_POST['text'])) {
+            //     echo ("Ошибка! Вы забыли добавить текст!");
+            //     return;
+            // }
+    
+            // if (!$author){
+            //     echo ("Ошибка! Я не могу понять, кто автор комментария");
+            //     return;
+            // }
+    
+            // if (!$article) {
+            //     echo ("Ошибка! Я не могу понять, в какую статью добавить этот комментарий");
+            //     return;
+            // }
+    
+    
+    
+            $this->view->renderHtml('comments/editComment.php', [
+                'author' => $author,
+                'article' => $article,
+                'comment' => $comment,
+            ]);
+    
+        }
+
+       
+
+        // TODO: сделать сохранение отредактированного комментария если отрпвлен пост запрос, а не гет
     }
 }
