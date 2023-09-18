@@ -25,6 +25,7 @@
 
     <?php foreach ($comments as $comment): ?>
 
+        <a name="comment-<?= $comment->getId() ?>"></a>
         <h2>Author: 
             <?= $comment->getAuthor()->getNickname() ?>
         </h2>

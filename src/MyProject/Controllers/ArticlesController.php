@@ -166,11 +166,18 @@ class ArticlesController extends AbstractController
 
         $comment->setText($_POST['text']);
 
-        $comment->save();
+        $response = $comment->save();
+ 
+        if($response === 1) {
+            // if update
+            $commentID = $_POST['commentId'];
+        } else {
+            $commentID = $response;
+        }
 
 
-
-        echo('We will take your comment. Soon you will be redirected.');
+        header("Location:  /articles/".$article->getId()."#comment-".$commentID);
+        exit();
     }
    
     // Принимаем гет-запросы для вывода формы редактирования комментария
