@@ -88,3 +88,8 @@ form.std textarea, form.std input{
 form.std textarea{
   width: 100%;
 }
+
+form.std .readonly {
+  background-color: #ddd;
+  opacity: 1;
+}

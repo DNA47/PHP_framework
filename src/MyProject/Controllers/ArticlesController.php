@@ -134,6 +134,12 @@ class ArticlesController extends AbstractController
         $author = UsersAuthService::getUserByToken();
         $article = Article::getById($articleId);
     
+        
+        if (!empty($_POST['commentId'])) {
+            $comment = Comment::getById($_POST['commentId']);
+        } else {
+            $comment = new Comment();
+        }
 
         if (empty($_POST['text'])) {
             echo ("Ошибка! Вы забыли добавить текст!");
@@ -152,7 +158,7 @@ class ArticlesController extends AbstractController
 
 
 
-        $comment = new Comment();
+       
 
         $comment->setAuthor($author);
 
@@ -171,44 +177,16 @@ class ArticlesController extends AbstractController
     // Принимаем пост-запросы для редактирования комментария в БД
     public function updateComments(int $articleId, int $commentId): void 
     {
+        $author = UsersAuthService::getUserByToken();
+        $article = Article::getById($articleId);
+        $comment = Comment::getById($commentId);
+
+
+        $this->view->renderHtml('comments/editComment.php', [
+            'author' => $author,
+            'article' => $article,
+            'comment' => $comment,
+        ]);
        
-        if($_SERVER['REQUEST_METHOD'] === 'POST') {
-            echo('We will UPDATE comment');
-
-        } else {
-
-            $author = UsersAuthService::getUserByToken();
-            $article = Article::getById($articleId);
-            $comment = Comment::getById($commentId);
-        
-    
-            // if (empty($_POST['text'])) {
-            //     echo ("Ошибка! Вы забыли добавить текст!");
-            //     return;
-            // }
-    
-            // if (!$author){
-            //     echo ("Ошибка! Я не могу понять, кто автор комментария");
-            //     return;
-            // }
-    
-            // if (!$article) {
-            //     echo ("Ошибка! Я не могу понять, в какую статью добавить этот комментарий");
-            //     return;
-            // }
-    
-    
-    
-            $this->view->renderHtml('comments/editComment.php', [
-                'author' => $author,
-                'article' => $article,
-                'comment' => $comment,
-            ]);
-    
-        }
-
-       
-
-        // TODO: сделать сохранение отредактированного комментария если отрпвлен пост запрос, а не гет
     }
 }

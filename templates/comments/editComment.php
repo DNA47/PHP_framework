@@ -4,7 +4,18 @@
     <div>
         <h2>Редактировать комментарий:</h2>
 
-        <form class="std" action="/articles/<?= $article->getId() ?>/comments/<?= $comment->getId() ?>/edit" method="POST">
+        <!-- <form class="std" action="/articles/<?= $article->getId() ?>/comments/<?= $comment->getId() ?>/edit" method="POST"> -->
+        <form class="std" action="/articles/<?= $article->getId() ?>/comments" method="POST">
+
+            
+            <p>
+                <label for="">
+                    ID комментария: <br>
+                    
+                    <input class="readonly" name="commentId" type="number" value="<?= $comment->getId() ?>" readonly >
+                </label>
+            </p>
+
 
             <p>
                 <label for="">
