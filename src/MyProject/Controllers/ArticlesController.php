@@ -184,13 +184,19 @@ class ArticlesController extends AbstractController
     // Принимаем пост-запросы для редактирования комментария в БД
     public function updateComments(int $articleId, int $commentId): void 
     {
-        $author = UsersAuthService::getUserByToken();
+        $user = UsersAuthService::getUserByToken();
         $article = Article::getById($articleId);
         $comment = Comment::getById($commentId);
+        $commentAuthor = $comment->getAuthor();
+        
+        if($user->getId() !==  $commentAuthor->getId()) {
+            echo('Вы пытаетесь отредактировать чужой комментарий.');
+            return;
+        }
 
 
         $this->view->renderHtml('comments/editComment.php', [
-            'author' => $author,
+            'author' => $commentAuthor,
             'article' => $article,
             'comment' => $comment,
         ]);

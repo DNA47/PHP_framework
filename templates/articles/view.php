@@ -34,7 +34,11 @@
             <?= $comment->getText() ?>
         </p>
 
-        <a href="/articles/<?= $article->getId() ?>/comments/<?= $comment->getId() ?>/edit">Редактировать</a>
+        <?php if($user && $user->getId() === $comment->getAuthor()->getId()): ?>
+            <a href="/articles/<?= $article->getId() ?>/comments/<?= $comment->getId() ?>/edit">Редактировать</a>
+        <?php endif; ?>
+
+      
 
         <hr>
 

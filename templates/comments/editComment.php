@@ -4,6 +4,8 @@
     <div>
         <h2>Редактировать комментарий:</h2>
 
+        <h4>Автор: <?= $author->getNickname() ?></h4>
+
         <!-- <form class="std" action="/articles/<?= $article->getId() ?>/comments/<?= $comment->getId() ?>/edit" method="POST"> -->
         <form class="std" action="/articles/<?= $article->getId() ?>/comments" method="POST">
 
